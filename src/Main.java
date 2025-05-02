@@ -1,3 +1,7 @@
+import src.Disciplina;
+import src.Geometrica;
+import src.MediaStrategy;
+
 public class Main {
     public static void main(String[] args) {
         MediaStrategy estrategia = new Geometrica();

@@ -1,3 +1,5 @@
+package src;
+
 public class Geometrica implements MediaStrategy {
     @Override
     public double calcularMedia(double p1, double p2) {

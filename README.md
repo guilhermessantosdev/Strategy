@@ -34,19 +34,23 @@ Você deve **isolar** esses comportamentos em classes independentes e permitir q
 
 | Passo | Descrição |
 |-------|-----------|
-| **1** | Crie a **interface** `MediaStrategy` com dois métodos:<br>`double calcularMedia(double p1, double p2);`<br>`String verificarSituacao(double media);` |
-| **2** | Implemente a classe **concreta** `Aritmetica` que realiza:<br>`média = (p1 + p2) / 2` e aprova se `média ≥ 5.0`. |
-| **3** | Implemente a classe **concreta** `Geometrica` que realiza:<br>`média = √(p1 × p2)` e aprova se `média ≥ 7.0`. |
-| **4** | Crie a classe `Disciplina` contendo nome, notas (`p1`, `p2`), média e situação. Ela recebe um objeto `MediaStrategy` no construtor. |
+| **1** | Crie a **interface** `src.MediaStrategy` com dois métodos:<br>`double calcularMedia(double p1, double p2);`<br>`String verificarSituacao(double media);` |
+| **2** | Implemente a classe **concreta** `src.Aritmetica` que realiza:<br>`média = (p1 + p2) / 2` e aprova se `média ≥ 5.0`. |
+| **3** | Implemente a classe **concreta** `src.Geometrica` que realiza:<br>`média = √(p1 × p2)` e aprova se `média ≥ 7.0`. |
+| **4** | Crie a classe `src.Disciplina` contendo nome, notas (`p1`, `p2`), média e situação. Ela recebe um objeto `src.MediaStrategy` no construtor. |
 | **5** | Desenvolva a classe `Main` (método `main`) demonstrando o uso das duas estratégias (comente/descomente para trocar). |
 | **6** | Compile com `javac` e execute com `java Main`. |
 
 ### 4.1 Exemplo de Código
 
 ```java
+import src.Aritmetica;
+import src.Disciplina;
+import src.MediaStrategy;
+
 public class Main {
     public static void main(String[] args) {
-        MediaStrategy estrategia = new Aritmetica();      // troque por new Geometrica()
+        MediaStrategy estrategia = new Aritmetica();      // troque por new src.Geometrica()
         Disciplina d = new Disciplina(estrategia);
 
         d.setNome("Padrões de Desenvolvimento");
@@ -66,34 +70,34 @@ public class Main {
 
 ```mermaid
 classDiagram
-    class MediaStrategy {
+    class src.MediaStrategy {
         <<interface>>
         +calcularMedia(p1, p2)
         +verificarSituacao(media)
     }
-    class Aritmetica {
+    class src.Aritmetica {
         +calcularMedia(p1, p2)
         +verificarSituacao(media)
     }
-    class Geometrica {
+    class src.Geometrica {
         +calcularMedia(p1, p2)
         +verificarSituacao(media)
     }
-    class Disciplina {
+    class src.Disciplina {
         -nome : String
         -p1 : double
         -p2 : double
         -media : double
         -situacao : String
-        -estrategia : MediaStrategy
+        -estrategia : src.MediaStrategy
         +calcularMedia()
     }
     class Main
 
-    MediaStrategy <|.. Aritmetica
-    MediaStrategy <|.. Geometrica
-    Disciplina --> MediaStrategy
-    Main --> Disciplina
+    src.MediaStrategy <|.. src.Aritmetica
+    src.MediaStrategy <|.. src.Geometrica
+    src.Disciplina --> src.MediaStrategy
+    Main --> src.Disciplina
 ```
 
 ---

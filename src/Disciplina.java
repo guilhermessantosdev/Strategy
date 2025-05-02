@@ -1,3 +1,5 @@
+package src;
+
 public class Disciplina {
     private String nome;
     private double p1;
